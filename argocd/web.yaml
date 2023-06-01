@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 'web'
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/acadnet-dev/infra.git'
+    path: charts/web
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+      parameters:
+        - name: image.tag
+          value: 349d008a9b0e45aea77d14906e777c9299635a54
+      values: |-
+        image:
+          tag: latest
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: acadnet
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

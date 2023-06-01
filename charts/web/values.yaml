@@ -1,0 +1,9 @@
+labels:
+  name: web
+
+service:
+  host: acadnet.dev
+  port: 3001
+
+image:
+  repository: ghcr.io/acadnet-dev/web
