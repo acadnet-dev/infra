@@ -13,7 +13,7 @@ spec:
         - values.yaml
       parameters:
         - name: image.tag
-          value: 00abd9bf8d3e5710b874202a7d49258a8bb801dc
+          value: 84a86cfc72bc2cd85b254a4c0e8a005f25c474e2
       values: |-
         image:
           tag: latest
