@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 'checker'
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/acadnet-dev/infra.git'
+    path: charts/checker
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+      parameters:
+        - name: image.tag
+          value: 00abd9bf8d3e5710b874202a7d49258a8bb801dc
+      values: |-
+        image:
+          tag: latest
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: acadnet
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
