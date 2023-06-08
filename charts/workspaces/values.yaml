@@ -1,0 +1,8 @@
+labels:
+  name: workspaces
+
+service:
+  port: 3030
+
+image:
+  repository: ghcr.io/acadnet-dev/workspaces

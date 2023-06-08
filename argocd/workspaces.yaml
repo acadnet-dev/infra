@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: 'workspaces'
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/acadnet-dev/infra.git'
+    path: charts/workspaces
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values.yaml
+      parameters:
+        - name: image.tag
+          value: 3420e16705615e7774b033e81ad153d952510ae3
+      values: |-
+        image:
+          tag: latest
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: acadnet
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
